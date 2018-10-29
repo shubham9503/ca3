@@ -1,0 +1,54 @@
+var express = require('express');
+var app = express();
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost/EmployeeDB';
+var str = "";
+
+app.route('/Employeeid').get(function(req, res)
+app.route('/Employeename').get(function(req, res)
+app.route('/Department').get(function(req, res)
+app.route('/Email').get(function(req, res)
+app.route('/phone').get(function(req, res)
+
+    {
+        MongoClient.connect(url, function(err, db) {
+            var cursor = db.collection('Employee').find();
+            cursor.each(function(err, item) {
+
+                if (item != null) {
+                    str = str + "    Employee id  " + item.Employeeid + "</br>"+"Employeename"+item.Employeename+"Department"+item.Department+"Email"+item.Email+"phone"+item.phone;
+                }
+            });
+            res.send(str);
+            db.close();
+        });
+    });
+
+var server = app.listen(3000, function() {});
+2)*****************************************************************************
+var fs = require('fs');
+ 
+var data = "this is file 2";
+ 
+// append data to file
+fs.appendFile('sam.txt',data, 'utf8',
+    // callback function
+    function(err) { 
+        if (err) throw err;
+        // if no error
+        console.log("Data successfully read from file 2.")
+});
+
+
+
+var fs = require('fs');
+ 
+var data = "this is file 1";
+ 
+// append data to file
+fs.copyFile('samples.txt',data, 'utf8',
+    // callback function
+    function(err) { 
+        if (err) throw err;
+        // if no error
+        console.log("Data is appended to file successfully.")
